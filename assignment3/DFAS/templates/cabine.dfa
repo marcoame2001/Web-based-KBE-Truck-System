@@ -1,0 +1,140 @@
+#! NX/KF 4.0 - Cabine element
+DefClass: CabineElement (%ug_create_instance ug_base_part);
+#--------------PARAMETERS----------------- 
+    (number parameter) element: <ELEMENT>;
+    (number parameter) truck_length: <TRUCK_LENGTH>;
+    (number parameter) element_length: <ELEMENT_LENGTH>;
+    (number parameter) truck_width: <TRUCK_WIDTH>;
+    (name parameter) element_color: <ELEMENT_COLOR>;
+    (name parameter) details_color: <DETAILS_COLOR>;
+    (number parameter) element_height: <ELEMENT_HEIGHT>;
+    (number parameter) cabine_height: <CABINE_HEIGHT>;
+    (name parameter) truck_color: <TRUCK_COLOR>;
+    
+#--------------OTHER PARAMETERS----------------- 
+	(number parameter) m_length: truck_length:-element_length:;
+    (number parameter) m_width: truck_width:-6;
+    (number parameter) base_height: 10;
+    (name parameter) lights_color: YELLOW;
+	
+#--------------CABINE STRUCTURE-----------------
+  (child) cabine_block: 
+{
+ class, ug_block;
+    height, cabine_height:;
+    width, m_width:;
+    length, m_length:; 
+	Origin, Point(element_length:,3,base_height:);
+	Direction, Vector(1,0,0);
+	
+};
+(child) window_side_back_opening: {
+	class; ug_block;
+	Length; m_length:*0.6;
+	Width; m_width:;
+	Height; cabine_height:-1;
+	Origin; Point(element_length:+2,3,base_height:);
+	Operation, Subtract;
+    Target, {cabine_block:};
+ };
+ (child) window_front_back_opening: {
+	class; ug_block;
+	Length; m_length:-((m_length:*0.6)+2);
+	Width; m_width:-2;
+	Height; (cabine_height:/2)-2;
+	Origin; Point(element_length:+2+m_length:*0.6,4,base_height:+1+(cabine_height:/2));
+	Operation, Subtract;
+    Target, {cabine_block:};
+ };
+
+ (child) front_right_door: {
+	class; ug_block;
+	Length; m_length:*0.6;
+	Width; 1;
+	Height; cabine_height:-1;
+	Origin; Point(element_length:+2,3,base_height:);
+ };
+  (child) front_left_door: {
+	class; ug_block;
+	Length; m_length:*0.6;
+	Width; 1;
+	Height; cabine_height:-1;
+	Origin; Point(element_length:+2,m_width:+2,base_height:);
+ };
+ (child) right_door_back_opening: {
+	class; ug_block;
+	Length; (m_length:/2);
+	Width; 1;
+	Height; (cabine_height:/2)-2;
+	Origin; Point(element_length:+3,3,base_height:+(cabine_height:-((cabine_height:/2)-2)-2));
+	Operation, Subtract;
+    Target, {front_right_door:};
+
+ };
+  (child) left_door_back_opening: {
+	class; ug_block;
+	Length; (m_length:/2);
+	Width; 1;
+	Height; (cabine_height:/2)-2;
+	Origin; Point(element_length:+3,m_width:+2,base_height:+(cabine_height:-((cabine_height:/2)-2)-2));
+	Operation, Subtract;
+    Target, {front_left_door:};
+
+ };
+ (child)right_light:{
+	class, ug_cylinder;
+    diameter, 5 ;
+    height, 1;
+    Origin, Point(element_length:+m_length:,(m_width:*0.25)+3,base_height:+(cabine_height:/8)); 
+    Direction, Vector(1,0,0);
+};
+ (child)left_light:{
+	class, ug_cylinder;
+    diameter, 5 ;
+    height, 1;
+    Origin, Point(element_length:+m_length:,(m_width:*0.75)+3,base_height:+(cabine_height:/8)); 
+    Direction, Vector(1,0,0);
+};
+
+
+
+
+(Child) body_colored: 
+{ 
+  Class, ug_body; 
+  Feature, {cabine_block:};  
+  Layer, 1; 
+  color, ug_askClosestColor(truck_color:); 
+};
+
+(Child) body_colored2: 
+{ 
+  Class, ug_body; 
+  Feature, {front_right_door:};  
+  Layer, 1; 
+  color, ug_askClosestColor(truck_color:); 
+};
+
+(Child) body_colored3: 
+{ 
+  Class, ug_body; 
+  Feature, {front_left_door:};  
+  Layer, 1; 
+  color, ug_askClosestColor(truck_color:); 
+};
+
+(Child) body_colored4: 
+{ 
+  Class, ug_body; 
+  Feature, {right_light:};  
+  Layer, 1; 
+  color, ug_askClosestColor(lights_color:); 
+};
+
+(Child) body_colored5: 
+{ 
+  Class, ug_body; 
+  Feature, {left_light:};  
+  Layer, 1; 
+  color, ug_askClosestColor(lights_color:); 
+};

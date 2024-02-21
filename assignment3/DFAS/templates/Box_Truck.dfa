@@ -1,0 +1,17 @@
+#! NX/KF 4.0 - Box Truck (3 elements)
+DefClass: BoxTruck (%ug_create_instance ug_base_part);
+(child) C_elem1:
+{
+    class, StructureElement;
+};
+
+(child) C_elem2:
+{
+	class, CabineElement;
+};
+(child) C_elem3:
+{
+	class, <ELEMENT>;
+};
+
+#BoxElement, PlatformElement, TankElement

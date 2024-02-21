@@ -1,0 +1,137 @@
+#! NX/KF 4.0 - Platform element
+DefClass: PlatformElement (%ug_create_instance ug_base_part);
+#--------------PARAMETERS-----------------
+    (number parameter) element: PlatformElement;
+    (number parameter) truck_length: 190;
+    (number parameter) element_length: 150;
+    (number parameter) truck_width: 50;
+    (name parameter) element_color: DARK_DULL_GREEN;
+    (name parameter) details_color: BLACK;
+    (number parameter) element_height: 50;
+    (number parameter) cabine_height: 40;
+    (name parameter) truck_color: RED;
+    
+#--------------OTHER PARAMETERS----------------- 
+    (number parameter) r_width: truck_width:-2;
+    (number parameter) s_height: 10;
+    (number parameter) r_length: 6;
+    
+	
+#--------------PLATFORM STRUCTURE-----------------
+  (child) blocker_block: 
+{
+    class, ug_block;
+    height, element_height:;
+    width, r_width:;
+    length, r_length:; 
+	Origin, Point(element_length:-6,1,s_height:);
+	Direction, Vector(1,0,0);
+};
+  (child) platform_block: 
+{
+    class, ug_block;
+    height, 3;
+    width, r_width:;
+    length, element_length:; 
+	Origin, Point(-6,1,s_height:);
+	Direction, Vector(1,0,0);
+	Operation, Unite;
+	Target, {blocker_block:};
+};
+(child) front_damper_block: 
+{
+    class, ug_block;
+    height, element_height:*0.375;
+    width, r_width:/6;
+    length, 5; 
+    Origin, Point(element_length:-6-7.5,(r_width:/2)-(r_width:/12)+1,s_height:+3); 
+	Direction, Vector(1,0,0);
+};
+(child) right_damper_block: 
+{
+    class, ug_block;
+    height, element_height:/8;
+    width, 2;
+    length, element_length:-11; 
+	Origin, Point(5,1,s_height:+3); 
+	Direction, Vector(1,0,0);
+};
+(child) left_damper_block: 
+{
+    class, ug_block;
+    height, element_height:/8;
+    width, 2;
+    length, element_length:-11; 
+    Origin, Point(5,r_width:-1,s_height:+3); 
+	Direction, Vector(1,0,0);
+};
+(child) blocker_window_block: 
+{
+    class, ug_block;
+    height, element_height:*0.45;
+    width, r_width:-6;
+    length, r_length:; 
+	Origin, Point(element_length:-6,4,s_height:+(element_height:-(element_height:*0.45)-3)); 
+	Direction, Vector(1,0,0);
+	Operation, Subtract;
+	Target, {blocker_block:};
+};
+(child) rope:
+{
+    class, ug_cylinder;
+    diameter, 10;
+    height, r_width:*0.42;
+    Origin, Point(element_length:-11,(r_width:/2)-(r_width:*0.21)+1,s_height:+3+element_height:*0.375); 
+    Direction, Vector(0,1,0);
+};
+
+
+
+
+(Child) body_colored: 
+{ 
+  Class, ug_body; 
+  Feature, {blocker_block:};  
+  Layer, 1; 
+  color, ug_askClosestColor(element_color:); 
+};
+
+(Child) body_colored2:
+{ 
+  Class, ug_body; 
+  Feature, {platform_block:};  
+  Layer, 1; 
+  color, ug_askClosestColor(element_color:); 
+};
+
+(Child) body_colored3: 
+{ 
+  Class, ug_body; 
+  Feature, {front_damper_block:};  
+  Layer, 1; 
+  color, ug_askClosestColor(details_color:); 
+};
+
+(Child) body_colored4: 
+{ 
+  Class, ug_body; 
+  Feature, {right_damper_block:};  
+  Layer, 1; 
+  color, ug_askClosestColor(element_color:); 
+};
+
+(Child) body_colored5: 
+{ 
+  Class, ug_body; 
+  Feature, {left_damper_block:};  
+  Layer, 1; 
+  color, ug_askClosestColor(element_color:); 
+};
+
+(Child) body_colored7: 
+{ 
+  Class, ug_body; 
+  Feature, {rope:};  
+  Layer, 1; 
+  color, ug_askClosestColor(details_color:); 
+};

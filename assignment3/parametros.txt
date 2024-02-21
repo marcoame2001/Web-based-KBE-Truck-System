@@ -1,0 +1,26 @@
+truck_length-------- <TRUCK_LENGTH>
+truck_width--------  <TRUCK_WIDTH>
+
+element_height or diameter: base_height+element_height (sin las ruedas)--------    <ELEMENT_HEIGHT>
+O ESTO
+
+element_length--------    <ELEMENT_LENGTH>
+
+cabine_height--------    <CABINE_HEIGHT>
+
+details_color--------    <DETAILS_COLOR>
+element_color--------    <ELEMENT_COLOR>
+truck_color--------    <TRUCK_COLOR>
+
+element-----------	<ELEMENT>
+
+
+
+
+
+
+
+
+
+cambiar los parametros por los <> para hacer la web y en Box truck el elemento hay que cambiarlo dependiendo de lo que quiera el usuario
+hacer un if para saber cual de los archivos dfa hay q modificar dependiendo de la eleccion del usuario

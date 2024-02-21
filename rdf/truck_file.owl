@@ -1,0 +1,188 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.my-kbe.com/truck.owl"
+     xml:base="http://www.my-kbe.com/truck.owl"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:truck="http://www.my-kbe.com/truck.owl#">
+    <owl:Ontology rdf:about="http://www.my-kbe.com/truck.owl"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.my-kbe.com/truck.owl#hasCabineHeight -->
+
+    <owl:DatatypeProperty rdf:about="http://www.my-kbe.com/truck.owl#hasCabineHeight">
+        <rdfs:domain rdf:resource="http://www.my-kbe.com/truck.owl#Truck"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.my-kbe.com/truck.owl#hasDetailsColor -->
+
+    <owl:DatatypeProperty rdf:about="http://www.my-kbe.com/truck.owl#hasDetailsColor">
+        <rdfs:domain rdf:resource="http://www.my-kbe.com/truck.owl#Truck"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.my-kbe.com/truck.owl#hasElement -->
+
+    <owl:DatatypeProperty rdf:about="http://www.my-kbe.com/truck.owl#hasElement">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.my-kbe.com/truck.owl#Truck"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.my-kbe.com/truck.owl#hasElementColor -->
+
+    <owl:DatatypeProperty rdf:about="http://www.my-kbe.com/truck.owl#hasElementColor">
+        <rdfs:domain rdf:resource="http://www.my-kbe.com/truck.owl#Truck"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.my-kbe.com/truck.owl#hasElementHeight -->
+
+    <owl:DatatypeProperty rdf:about="http://www.my-kbe.com/truck.owl#hasElementHeight">
+        <rdfs:domain rdf:resource="http://www.my-kbe.com/truck.owl#Truck"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.my-kbe.com/truck.owl#hasElementLength -->
+
+    <owl:DatatypeProperty rdf:about="http://www.my-kbe.com/truck.owl#hasElementLength">
+        <rdfs:domain rdf:resource="http://www.my-kbe.com/truck.owl#Truck"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.my-kbe.com/truck.owl#hasTruckColor -->
+
+    <owl:DatatypeProperty rdf:about="http://www.my-kbe.com/truck.owl#hasTruckColor">
+        <rdfs:domain rdf:resource="http://www.my-kbe.com/truck.owl#Truck"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.my-kbe.com/truck.owl#hasTruckLength -->
+
+    <owl:DatatypeProperty rdf:about="http://www.my-kbe.com/truck.owl#hasTruckLength">
+        <rdfs:domain rdf:resource="http://www.my-kbe.com/truck.owl#Truck"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.my-kbe.com/truck.owl#hasTruckWidth -->
+
+    <owl:DatatypeProperty rdf:about="http://www.my-kbe.com/truck.owl#hasTruckWidth">
+        <rdfs:domain rdf:resource="http://www.my-kbe.com/truck.owl#Truck"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.my-kbe.com/truck.owl#Truck -->
+
+    <owl:Class rdf:about="http://www.my-kbe.com/truck.owl#Truck"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.my-kbe.com/truck.owl#BoxTruck1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.my-kbe.com/truck.owl#BoxTruck1">
+        <rdf:type rdf:resource="http://www.my-kbe.com/truck.owl#Truck"/>
+        <truck:hasCabineHeight rdf:datatype="http://www.w3.org/2001/XMLSchema#float">40.0</truck:hasCabineHeight>
+        <truck:hasDetailsColor>BLACK</truck:hasDetailsColor>
+        <truck:hasElement>BoxElement</truck:hasElement>
+        <truck:hasElementColor>DARK_DULL_GREEN</truck:hasElementColor>
+        <truck:hasElementHeight rdf:datatype="http://www.w3.org/2001/XMLSchema#float">50.0</truck:hasElementHeight>
+        <truck:hasElementLength rdf:datatype="http://www.w3.org/2001/XMLSchema#float">150.0</truck:hasElementLength>
+        <truck:hasTruckColor>RED</truck:hasTruckColor>
+        <truck:hasTruckLength rdf:datatype="http://www.w3.org/2001/XMLSchema#float">190.0</truck:hasTruckLength>
+        <truck:hasTruckWidth rdf:datatype="http://www.w3.org/2001/XMLSchema#float">50.0</truck:hasTruckWidth>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.my-kbe.com/truck.owl#PlatformTruck1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.my-kbe.com/truck.owl#PlatformTruck1">
+        <rdf:type rdf:resource="http://www.my-kbe.com/truck.owl#Truck"/>
+        <truck:hasCabineHeight rdf:datatype="http://www.w3.org/2001/XMLSchema#float">40.0</truck:hasCabineHeight>
+        <truck:hasDetailsColor>BLACK</truck:hasDetailsColor>
+        <truck:hasElement>PlaftormElement</truck:hasElement>
+        <truck:hasElementColor>DARK_DULL_GREEN</truck:hasElementColor>
+        <truck:hasElementHeight rdf:datatype="http://www.w3.org/2001/XMLSchema#float">50.0</truck:hasElementHeight>
+        <truck:hasElementLength rdf:datatype="http://www.w3.org/2001/XMLSchema#float">150.0</truck:hasElementLength>
+        <truck:hasTruckColor>RED</truck:hasTruckColor>
+        <truck:hasTruckLength rdf:datatype="http://www.w3.org/2001/XMLSchema#float">190.0</truck:hasTruckLength>
+        <truck:hasTruckWidth rdf:datatype="http://www.w3.org/2001/XMLSchema#float">50.0</truck:hasTruckWidth>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.my-kbe.com/truck.owl#TankTruck1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.my-kbe.com/truck.owl#TankTruck1">
+        <rdf:type rdf:resource="http://www.my-kbe.com/truck.owl#Truck"/>
+        <truck:hasCabineHeight rdf:datatype="http://www.w3.org/2001/XMLSchema#float">40.0</truck:hasCabineHeight>
+        <truck:hasDetailsColor>BLACK</truck:hasDetailsColor>
+        <truck:hasElement>TankElement</truck:hasElement>
+        <truck:hasElementColor>WHITE</truck:hasElementColor>
+        <truck:hasElementHeight rdf:datatype="http://www.w3.org/2001/XMLSchema#float">50.0</truck:hasElementHeight>
+        <truck:hasElementLength rdf:datatype="http://www.w3.org/2001/XMLSchema#float">150.0</truck:hasElementLength>
+        <truck:hasTruckColor>RED</truck:hasTruckColor>
+        <truck:hasTruckLength rdf:datatype="http://www.w3.org/2001/XMLSchema#float">190.0</truck:hasTruckLength>
+        <truck:hasTruckWidth rdf:datatype="http://www.w3.org/2001/XMLSchema#float">50.0</truck:hasTruckWidth>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

@@ -1,0 +1,90 @@
+#! NX/KF 4.0 - Box element
+DefClass: BoxElement (%ug_create_instance ug_base_part);
+#--------------PARAMETERS----------------- 
+    (number parameter) element: BoxElement;
+    (number parameter) truck_length: 190;
+    (number parameter) element_length: 150;
+    (number parameter) truck_width: 50;
+    (name parameter) element_color: DARK_DULL_GREEN;
+    (name parameter) details_color: BLACK;
+    (number parameter) element_height: 50;
+    (number parameter) cabine_height: 40;
+    (name parameter) truck_color: RED;
+
+        
+#--------------OTHER PARAMETERS----------------- 
+    (number parameter) base_height: 10;
+
+#--------------BOX STRUCTURE-----------------
+  (child) box_block: 
+{
+    class, ug_block;
+    height, element_height:;
+    width, truck_width:;
+    length, element_length:; 
+	Origin, Point(0,0,base_height:);
+	Direction, Vector(1,0,0);
+};
+(child) back_opening: {
+	class; ug_block;
+	Length; element_length:*0.95;
+	Width; truck_width:-6;
+	Height; element_height:-6;
+	Origin; Point(0,3,base_height:+3);
+	Operation, Subtract;
+    Target, {box_block:};
+ };
+ (child) right_back_door: {
+	class; ug_block;
+	Length; 3;
+	Width; (truck_width:-6)/2;
+	Height; element_height:-6;
+	Origin; Point(0,3,base_height:+3);
+ };
+  (child) left_back_door: {
+	class; ug_block;
+	Length; 3;
+	Width; (truck_width:-6)/2;
+	Height; element_height:-6;
+	Origin; Point(0,((truck_width:-6)/2)+3,base_height:+3);
+ };
+   (child) locker: {
+	class; ug_block;
+	Length; 0.5;
+	Width; truck_width:/5;
+	Height; element_height:/30;
+	Origin; Point(-0.5,truck_width:*0.4,element_height:/2);
+ };
+
+
+
+(Child) body_colored: 
+{ 
+  Class, ug_body; 
+  Feature, {box_block:};  
+  Layer, 1; 
+  color, ug_askClosestColor(element_color:); 
+};
+
+(Child) body_colored2: 
+{ 
+  Class, ug_body; 
+  Feature, {right_back_door:};  
+  Layer, 1; 
+  color, ug_askClosestColor(element_color:); 
+};
+
+(Child) body_colored3: 
+{ 
+  Class, ug_body; 
+  Feature, {left_back_door:};  
+  Layer, 1; 
+  color, ug_askClosestColor(element_color:); 
+};
+(Child) body_colored4: 
+{ 
+  Class, ug_body; 
+  Feature, {locker:};  
+  Layer, 1; 
+  color, ug_askClosestColor(details_color:); 
+};

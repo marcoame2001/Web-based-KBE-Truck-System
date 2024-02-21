@@ -1,0 +1,79 @@
+#! NX/KF 4.0 - Tank element
+DefClass: TankElement (%ug_create_instance ug_base_part);
+#--------------PARAMETERS-----------------  
+    (number parameter) element: <ELEMENT>;
+    (number parameter) truck_length: <TRUCK_LENGTH>;
+    (number parameter) element_length: <ELEMENT_LENGTH>;
+    (number parameter) truck_width: <TRUCK_WIDTH>;
+    (name parameter) element_color: <ELEMENT_COLOR>;
+    (name parameter) details_color: <DETAILS_COLOR>;
+    (number parameter) element_height: <ELEMENT_HEIGHT>;
+    (number parameter) cabine_height: <CABINE_HEIGHT>;
+    (name parameter) truck_color: <TRUCK_COLOR>;
+
+#--------------OTHER PARAMETERS-----------------  
+
+	(number parameter) s_height: 10;
+	
+#--------------TANK STRUCTURE-----------------
+(child) base_cylinder: {
+    class, ug_cylinder;
+    diameter, element_height:;
+    height, element_length:;
+	Origin, Point(0,truck_width:/2,s_height:+(element_height:/2));
+	Direction, Vector(1,0,0);
+};
+(child) support_right_cylinder: {
+    class, ug_cylinder;
+    diameter, element_height:/10;
+    height, element_length:;
+	Origin, Point(0,element_height:/10,s_height:+element_height:/20);
+	Direction, Vector(1,0,0);
+};
+(child) support_left_cylinder: {
+    class, ug_cylinder;
+    diameter, element_height:/10;
+    height, element_length:;
+	Origin, Point(0,(truck_width:)-(element_height:/10),s_height:+element_height:/20);
+	Direction, Vector(1,0,0);
+};
+
+(child) upper_part: 
+{
+    class, ug_block;
+    height, element_height:/5;
+    width, element_height:/3;
+    length, element_length:*0.9; 
+	Origin, Point((element_length:*0.1)/2,((truck_width:)/2)-(element_height:/6),s_height:+element_height:-5);
+	Direction, Vector(1,0,0);
+};
+
+(Child) body_colored: 
+{ 
+  Class, ug_body; 
+  Feature, {base_cylinder:};  
+  Layer, 1; 
+  color, ug_askClosestColor(element_color:); 
+};
+(Child) body_colored2: 
+{ 
+  Class, ug_body; 
+  Feature, {upper_part:};  
+  Layer, 1; 
+  color, ug_askClosestColor(element_color:); 
+};
+(Child) body_colored3: 
+{ 
+  Class, ug_body; 
+  Feature, {support_right_cylinder:};  
+  Layer, 1; 
+  color, ug_askClosestColor(details_color:); 
+};
+(Child) body_colored4: 
+{ 
+  Class, ug_body; 
+  Feature, {support_left_cylinder:};  
+  Layer, 1; 
+  color, ug_askClosestColor(details_color:); 
+};
+

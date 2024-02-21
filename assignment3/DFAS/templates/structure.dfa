@@ -1,0 +1,72 @@
+#! NX/KF 4.0 - Structure element
+DefClass: StructureElement (%ug_create_instance ug_base_part);
+
+#--------------PARAMETERS-----------------   
+    (number parameter) element: <ELEMENT>;
+    (number parameter) truck_length: <TRUCK_LENGTH>;
+    (number parameter) element_length: <ELEMENT_LENGTH>;
+    (number parameter) truck_width: <TRUCK_WIDTH>;
+    (name parameter) element_color: <ELEMENT_COLOR>;
+    (name parameter) details_color: <DETAILS_COLOR>;
+    (number parameter) element_height: <ELEMENT_HEIGHT>;
+    (number parameter) cabine_height: <CABINE_HEIGHT>;
+    (name parameter) truck_color: <TRUCK_COLOR>;
+    
+    
+#--------------OTHER PARAMETERS-----------------    
+    (number parameter) base_height: 10; #FIJO
+	
+#--------------BASE STRUCTURE-----------------
+    (child) base_block: 
+{
+    class, ug_block;
+    height, base_height:;
+    width, truck_width:;
+    length, truck_length:; 
+	Origin, Point(0,0,0);
+	Direction, Vector(1,0,0);
+
+};
+
+(Child) body_colored: 
+{ 
+  Class, ug_body; 
+  Feature, {base_block:};  
+  Layer, 1; 
+  color, ug_askClosestColor(truck_color:); 
+};
+
+(list) list1: loop
+{
+for $y in {0,truck_width:-5};
+collect loop{
+	for $x in{(truck_length:/7.6),(truck_length:/1.652),(truck_length:/1.1515)};
+  append {ug_createInstance(
+  {
+            class, ug_cylinder;
+            diameter, 18;
+            height, 5;
+            Origin, Point($x,$y,0); 
+            Direction, Vector(0,1,0);
+           Operation, Subtract;
+           Target, {base_block:};
+      })};
+	};
+for $y in {-2,truck_width:-4};
+collect loop{
+	for $x in{(truck_length:/7.6),(truck_length:/1.652),(truck_length:/1.1515)};
+  append {ug_createInstance(
+  {
+            class, ug_cylinder;
+            diameter, 17;
+            height, 6;
+            Origin, Point($x,$y,0); 
+            Direction, Vector(0,1,0);
+      })};
+	  };
+
+};
+
+
+
+(list) DemandValue: {List1:};
